@@ -10,8 +10,9 @@ developing.  This script can do a few things (see `anonymize.yml`):
     * Random IP addresses
     * Email addresses
     * Usernames
-    * Name
-    * Slug
+    * First Name
+    * Last Name
+    * String
 * Delete rows based on simple rules:  e.g.
   ``DELETE FROM mytable WHERE private = "Yes"``:
 
@@ -44,7 +45,4 @@ developing.  This script can do a few things (see `anonymize.yml`):
     python anonymize.py [project_name] > anon.sql
     cat anon.sql | mysql
 
-### Projects
 
- - revsquare
- - talentis

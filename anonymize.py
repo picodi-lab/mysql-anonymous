@@ -66,24 +66,27 @@ def get_updates(config):
                     updates.append("`%s` = INET_NTOA(RAND()*1000000000)" % field)
             elif operation == 'random_email':
                 for field in listify(details):
-                    updates.append("`%s` = CONCAT(id, '@randemail.qwq')"
+                    updates.append("`%s` = CONCAT(id, '@aaaaa.aaaaa')"
                                    % field)
             elif operation == 'random_username':
                 for field in listify(details):
                     updates.append("`%s` = CONCAT('_user_', id)" % field)
-            elif operation == 'random_name':
+            elif operation == 'random_f_name':
                 for field in listify(details):
-                    updates.append("`%s` = CONCAT('_name_', id)" % field)
-            elif operation == 'random_slug':
+                    updates.append("`%s` = CONCAT('_f_name_', id)" % field)
+            elif operation == 'random_l_name':
                 for field in listify(details):
-                    updates.append("`%s` = CONCAT('_slug_', id)" % field)
+                    updates.append("`%s` = CONCAT('_l_name_', id)" % field)
+            elif operation == 'random_string':
+                for field in listify(details):
+                    updates.append("`%s` = CONCAT('_string_', id)" % field)
             elif operation == 'hash_value':
                 for field in listify(details):
                     updates.append("`%(field)s` = MD5(CONCAT(@common_hash_secret, `%(field)s`))"
                                    % dict(field=field))
             elif operation == 'hash_email':
                 for field in listify(details):
-                    updates.append("`%(field)s` = CONCAT(MD5(CONCAT(@common_hash_secret, `%(field)s`)), '@randemail.qwq')"
+                    updates.append("`%(field)s` = CONCAT(MD5(CONCAT(@common_hash_secret, `%(field)s`)), '@aaaaa.aaaaa')"
                                    % dict(field=field))
             elif operation == 'delete':
                 continue

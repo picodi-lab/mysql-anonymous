@@ -77,8 +77,6 @@ database:
         users:
             random_email: email
             nullify:
-                - firstname
-                - lastname
                 - password
                 - confirmationcode
                 - resetcode
@@ -90,5 +88,10 @@ database:
                 - last_login_attempt_ip
                 - failed_login_attempts
             random_username: [username, nickname]
+            random_f_name: [firstname]
+            random_l_name: [lastname]
+            random_string: [slug]
+            except_exact_field_value: [email='aaa@bbbb', email='bbb@aaaa']
+            except_pattern_field_value: [email='%@gmail.com', email='%@yahoo.com']
         versions:
             nullify: approvalnotes
