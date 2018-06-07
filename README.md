@@ -16,28 +16,28 @@ developing.  This script can do a few things (see `anonymize.yml`):
 * Delete rows based on simple rules:  e.g.
   ``DELETE FROM mytable WHERE private = "Yes"``:
 
-    database:
-        tables:
-            mytable:
-                delete:
-                    private: Yes
+   ``database:``
+        ``tables:``
+            ``mytable:``
+                ``delete:``
+                    ``private: Yes ``
 
 * update records except field = 'value'
 
    for instance:
 
-    database:
+   `` database:
         tables:
             mytable:
                 random_username: [ username, username_canonical]
                 except_exact_field_value: [email='aaa@bbbb', email='bbb@aaaa']
-                except_pattern_field_value: [email='%@pentalog.com', email='%@pentalog.fr']
+                except_pattern_field_value: [email='%@pentalog.com', email='%@pentalog.fr'] ``
 
 ### Install
 
 1. Python 2.7
 2. Create virtualenv
-3. Install requirements: pip install requirements
+3. Install requirements: ``pip install requirements ``
 
 
 ### Usage
