@@ -30,8 +30,9 @@ developing.  This script can do a few things (see `anonymize.yml`):
         tables:
             mytable:
                 random_username: [ username, username_canonical]
-                except_exact_field_value: [email='aaa@bbbb', email='bbb@aaaa']
-                except_pattern_field_value: [email='%@pentalog.com', email='%@pentalog.fr'] ``
+                except_field_values: [username='john_doe|phillip|alex', email='@gmail.com|@yahoo.com|admin@gmail.com']``
+
+   == see example/example_anonymize.yml for reference ==
 
 ### Install
 
@@ -40,7 +41,12 @@ developing.  This script can do a few things (see `anonymize.yml`):
 3. Install requirements: ``pip install requirements ``
 
 
+
 ### Usage
+
+1. Create as many dirs you want under 'config' dir which represents the 'project_name'
+2. Create yml file for each project and name it as follow: [project_name]_anonymize.yml
+  (see example/example_anonymize.yml for reference)
 
     python anonymize.py [project_name] > anon.sql
     cat anon.sql | mysql

@@ -91,7 +91,6 @@ database:
             random_f_name: [firstname]
             random_l_name: [lastname]
             random_string: [slug]
-            except_exact_field_value: [email='aaa@bbbb', email='bbb@aaaa']
-            except_pattern_field_value: [email='%@gmail.com', email='%@yahoo.com']
+            except_field_values: [username='john_doe|phillip|alex', email='@gmail.com|@yahoo.com|admin@gmail.com']``
         versions:
             nullify: approvalnotes
