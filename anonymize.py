@@ -37,13 +37,15 @@ def get_deletes(config):
 listify = lambda x: x if isinstance(x, list) else [x]
 
 
+def split_values(value):
+    values = value.split("=")
+    it = iter(values)
+    return dict(izip(it, it))
+
+
 def dictify(x):
-    d = list()
-    for item in x:
-        item_list = item.split("=")
-        i = iter(item_list)
-        d.append(dict(izip(i, i)))
-    return d
+    return [split_values(item) for item in x]
+
 
 def get_updates(config):
     global common_hash_secret
@@ -90,14 +92,10 @@ def get_updates(config):
                                    % dict(field=field))
             elif operation == 'delete':
                 continue
-            elif operation == 'except_exact_field_value':
+            elif operation == 'except_field_values':
                 for field in dictify(details):
                     for k, v in field.iteritems():
-                        conditional.append("'{0}' not in {1}".format(k, v))
-            elif operation == 'except_pattern_field_value':
-                for field in dictify(details):
-                    for k, v in field.iteritems():
-                        conditional.append("'{0}' not like {1}".format(k, v))
+                        conditional.append("`{0}` NOT REGEXP {1}".format(k, v))
             else:
                 log.warning('Unknown operation.')
         if updates:
