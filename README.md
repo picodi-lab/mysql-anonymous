@@ -14,25 +14,29 @@ developing.  This script can do a few things (see `anonymize.yml`):
     * Last Name
     * String
 * Delete rows based on simple rules:  e.g.
-  ``DELETE FROM mytable WHERE private = "Yes"``:
+  ```yml
+  DELETE FROM mytable WHERE private = "Yes"``:
 
-   ``database:``
-        ``tables:``
-            ``mytable:``
-                ``delete:``
-                    ``private: Yes ``
+   database:
+      tables:
+         mytable:
+            delete:
+               private: Yes
+    ```
 
 * update records except field = 'value'
 
    for instance:
 
-   `` database:
+   ```yml
+   database:
         tables:
             mytable:
                 random_username: [ username, username_canonical]
-                except_field_values: [username='john_doe|phillip|alex', email='@gmail.com|@yahoo.com|admin@gmail.com']``
+                except_field_values: [username='john_doe|phillip|alex', email='@gmail.com|@yahoo.com|admin@gmail.com']
+   ```
 
-   == see example/example_anonymize.yml for reference ==
+   ###### see example/example_anonymize.yml for reference 
 
 ### Install
 
@@ -48,7 +52,9 @@ developing.  This script can do a few things (see `anonymize.yml`):
 2. Create yml file for each project and name it as follow: [project_name]_anonymize.yml
   (see example/example_anonymize.yml for reference)
 
+    ```
     python anonymize.py [project_name] > anon.sql
     cat anon.sql | mysql
+    ```
 
 
