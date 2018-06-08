@@ -68,7 +68,7 @@ def get_updates(config):
                     updates.append("`%s` = INET_NTOA(RAND()*1000000000)" % field)
             elif operation == 'random_email':
                 for field in listify(details):
-                    updates.append("`%s` = CONCAT(id, '@aaaaa.aaaaa')"
+                    updates.append("`%s` = CONCAT(id, '@aaaaa.bbbbb')"
                                    % field)
             elif operation == 'random_username':
                 for field in listify(details):
@@ -88,7 +88,7 @@ def get_updates(config):
                                    % dict(field=field))
             elif operation == 'hash_email':
                 for field in listify(details):
-                    updates.append("`%(field)s` = CONCAT(MD5(CONCAT(@common_hash_secret, `%(field)s`)), '@aaaaa.aaaaa')"
+                    updates.append("`%(field)s` = CONCAT(MD5(CONCAT(@common_hash_secret, `%(field)s`)), '@aaaaa.bbbbb')"
                                    % dict(field=field))
             elif operation == 'delete':
                 continue
