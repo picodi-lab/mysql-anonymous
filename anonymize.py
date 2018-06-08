@@ -137,9 +137,9 @@ if __name__ == '__main__':
     import sys
 
     if len(sys.argv) > 1:
-        files = ['config/{0}/{1}-anonymize.yml'.format(sys.argv[1], sys.argv[1])]
+        files = ['config/{0}/{1}_anonymize.yml'.format(sys.argv[1], sys.argv[1])]
     else:
-        files = ['config/example/anonymize.yml']
+        files = ['config/example/example_anonymize.yml']
 
     for f in files:
         print("--")
