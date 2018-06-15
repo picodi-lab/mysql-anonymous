@@ -1,0 +1,44 @@
+database:
+    tables:
+        config:
+            empty_string: [value]
+            where:
+                -
+                    field: key
+                    condition: '='
+                    value: resource.uber.randomize
+        mailing_events:
+            pico_email_mailinator: [email]
+        mobile_device:
+            mac_constant: [mac_address]
+        mobile_device2:
+            mac_constant: [mac_address]
+        mobile_user_action:
+            random_float: [lat, lng]
+        mobile_user_last_action:
+            random_float: [lat, lng]
+        one_time_offer:
+            ip_localhost: [user_ip]
+        opinion:
+            ip_localhost: [ip]
+        sms:
+            phone_constant: number
+            ip_localhost: [ip]
+        user:
+            pico_email_mailinator: [username, username_canonical, email, email_canonical]
+            empty_string: [facebook_id, google_id, twitter_id, vk_id, ok_id, call_name]
+            ip_localhost: [ip]
+        user_data:
+            date_random: [birthday]
+            gender_random: [gender]
+            random_f_name: [name]
+            random_l_name: [lastname]
+            ip_localhost: [reg_ip]
+        user_login:
+            ip_localhost: [ip]
+        vote:
+            ip_localhost: [ip]
+        email_authorization:
+            pico_email_mailinator: [email]
+        sale_reports:
+            ip_localhost: [ip]

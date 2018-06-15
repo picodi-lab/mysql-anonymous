@@ -9,7 +9,9 @@ from itertools import izip
 
 log = logging.getLogger('anonymize')
 common_hash_secret = "%016x" % (random.getrandbits(128))
+picodi_hash_secret = '_picodi'
 
+mailinator_domain = 'mailinator.com'
 
 def get_truncates(config):
     database = config.get('database', {})
@@ -90,6 +92,49 @@ def get_updates(config):
                 for field in listify(details):
                     updates.append("`%(field)s` = CONCAT(MD5(CONCAT(@common_hash_secret, `%(field)s`)), '@aaaaa.bbbbb')"
                                    % dict(field=field))
+            # set hash from field with constant salt
+            elif operation == 'pico_hash':
+                for field in listify(details):
+                    updates.append("`{0}` = MD5(CONCAT(`{0}`, '{1}'))".format(field, picodi_hash_secret))
+            # set hash from field with constant salt and mailinator sufix
+            elif operation == 'pico_email_mailinator':
+                for field in listify(details):
+                    updates.append("`{0}` = CONCAT(MD5(CONCAT(`{0}`, '{1}')), '@', '{2}')'".format(field, picodi_hash_secret, mailinator_domain))
+            # set empty string to field
+            elif operation == 'empty_string':
+                for field in listify(details):
+                    updates.append("`%s` = ''" % field)
+            # set random mac address
+            elif operation == 'mac_constant':
+                for field in listify(details):
+                    updates.append("`{0}` = '{1}'".format(field, "01:23:45:67:89:AB"))
+            # set random float number
+            elif operation == 'random_float':
+                for field in listify(details):
+                    updates.append("`%s` = RAND()*100" % field)
+            # set ip 127.0.0.1
+            elif operation == 'ip_localhost':
+                for field in listify(details):
+                    updates.append("`%s` = '127.0.0.1'" % field)
+            # set phone number 627042178
+            elif operation == 'phone_constant':
+                for field in listify(details):
+                    updates.append("`%s` = '627042178'" % field)
+            # set random date
+            elif operation == 'date_random':
+                for field in listify(details):
+                    updates.append("`%s` = NOW() - INTERVAL ROUND(RAND()*10000) DAY" % field)
+            # set random gender
+            elif operation == 'gender_random':
+                for field in listify(details):
+                    updates.append("`%s` = CASE WHEN RAND() > 0.5 THEN NULL ELSE IF(RAND() > 0.5, 'f', 'm') END" % field)
+            # where condition
+            elif operation == 'where':
+                for field in listify(details):
+                    if isinstance(field['value'], basestring):
+                        conditional.append("`{0}` {1} '{2}'".format(field['field'], field['condition'], field['value']))
+                    else:
+                        conditional.append("`{0}` {1} {2}".format(field['field'], field['condition'], field['value']))
             elif operation == 'delete':
                 continue
             elif operation == 'except_field_values':
