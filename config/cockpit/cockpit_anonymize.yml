@@ -5,7 +5,7 @@ database:
         db:
             pico_hash: [User]
         deletion_authorization:
-            pico_email_mailinator: [email]
+            pico_email_mailinator: [mail]
         user:
             pico_hash: [User]
         users:
