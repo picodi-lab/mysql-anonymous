@@ -22,7 +22,7 @@ database:
         opinion:
             ip_localhost: [ip]
         sms:
-            phone_constant: number
+            phone_constant: [number]
             ip_localhost: [ip]
         user:
             pico_email_mailinator: [username, username_canonical, email, email_canonical]
