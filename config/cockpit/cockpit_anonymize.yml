@@ -1,13 +1,9 @@
 database:
     tables:
-        coupons_export_queue:
-            pico_email_mailinator: [email]
-        db:
-            pico_hash: [User]
-        deletion_authorization:
-            pico_email_mailinator: [mail]
-        user:
-            pico_hash: [User]
-        users:
-            pico_hash: [username]
-            pico_email_mailinator: [email]
+#        icoupons_export_queue:
+#            pico_email_mailinator: [email]
+#        deletion_authorization:
+#            pico_email_mailinator: [mail]
+#        users:
+#            pico_hash: [username]
+#            pico_email_mailinator: [email]
