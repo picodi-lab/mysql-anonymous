@@ -99,7 +99,7 @@ def get_updates(config):
             # set hash from field with constant salt and mailinator sufix
             elif operation == 'pico_email_mailinator':
                 for field in listify(details):
-                    updates.append("`{0}` = CONCAT(MD5(CONCAT(`{0}`, '{1}')), '@', '{2}')'".format(field, picodi_hash_secret, mailinator_domain))
+                    updates.append("`{0}` = CONCAT(MD5(CONCAT(`{0}`, '{1}')), '@', '{2}')".format(field, picodi_hash_secret, mailinator_domain))
             # set empty string to field
             elif operation == 'empty_string':
                 for field in listify(details):
